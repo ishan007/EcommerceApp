@@ -1,6 +1,6 @@
 pipeline {
 
-    agent any
+    agent none
     tools{
         nodejs 'nodejs'
     }
@@ -9,6 +9,7 @@ pipeline {
         stage('Build'){
             agent {
                 docker {
+                    label 'docker'
                     image 'androidsdk/android-30'
                 }
             }
