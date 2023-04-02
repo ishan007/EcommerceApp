@@ -7,12 +7,7 @@ pipeline {
 
     stages{
         stage('Build'){
-            agent {
-                docker {
-                    label 'docker'
-                    image 'androidsdk/android-30'
-                }
-            }
+
             steps{
                 echo '---------- BUILD STAGE STARTED --------------'
                 sh './gradlew build'
