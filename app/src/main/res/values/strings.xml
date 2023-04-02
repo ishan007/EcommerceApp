@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NagpEcommerce</string>
+    <string name="nagp">Nagp</string>
+    <string name="welcome_header_text">NAGP Ecommerce App</string>
+    <string name="welcome_sub_header_text">Hope you like the demo</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="category">Category</string>
+    <string name="search">Search</string>
+</resources>
