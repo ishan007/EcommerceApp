@@ -10,7 +10,7 @@ import retrofit2.Response
 class ProductListPresenter(private val view: ProductListView, private val repository: ProductListRepository) {
 
     fun searchProduct(category: String){
-        val productCall = repository.searchProduct(category)
+        val productCall = repository.searchProduct(category.trim())
         productCall.enqueue(object : Callback<List<Product>>{
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 if(response.isSuccessful){

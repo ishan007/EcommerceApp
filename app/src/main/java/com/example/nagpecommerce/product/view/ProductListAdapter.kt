@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.nagpecommerce.R
 import com.example.nagpecommerce.product.entity.Product
 
@@ -21,6 +22,7 @@ class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ViewHolder>()
         fun bind(product: Product){
             priceTv.text = product.price
             nameTv.text = product.name
+            Glide.with(imageIv.context).load(product.image).centerCrop().into(imageIv);
         }
     }
 
