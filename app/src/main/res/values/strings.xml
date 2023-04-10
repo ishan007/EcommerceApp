@@ -2,7 +2,7 @@
     <string name="app_name">NagpEcommerce</string>
     <string name="nagp">Nagp</string>
     <string name="welcome_header_text">NAGP Ecommerce App</string>
-    <string name="welcome_sub_header_text">Hope you like the demo</string>
+    <string name="welcome_sub_header_text">Hope you really like the demo</string>
     <string name="username">Username</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
