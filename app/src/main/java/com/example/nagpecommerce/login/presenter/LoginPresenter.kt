@@ -17,6 +17,7 @@ class LoginPresenter(private val view: LoginView, private val repository: LoginR
         loginCall.enqueue(object : Callback<LoginResponse>{
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful) {
+                    view.saveTokens(response.body() ?: LoginResponse("", ""))
                     view.openProductListScreen()
                 }else{
                     val errorResponse = Gson().fromJson(response.errorBody()?.string(), JsonObject::class.java)

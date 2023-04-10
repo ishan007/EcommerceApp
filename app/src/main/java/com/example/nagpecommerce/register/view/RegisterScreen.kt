@@ -7,7 +7,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.edit
 import com.example.nagpecommerce.R
+import com.example.nagpecommerce.login.entity.LoginResponse
+import com.example.nagpecommerce.login.view.ACCESS_TOKEN
+import com.example.nagpecommerce.login.view.EMAIL
+import com.example.nagpecommerce.login.view.REFRESH_TOKEN
+import com.example.nagpecommerce.login.view.USER_PREF
+import com.example.nagpecommerce.main.MainActivity
 import com.example.nagpecommerce.product.view.ProductListScreen
 import com.example.nagpecommerce.register.entity.Credentials
 import com.example.nagpecommerce.register.entity.RegisterRequest
@@ -27,13 +34,20 @@ class RegisterScreen : AppCompatActivity(), RegisterView {
     }
 
     override fun openProductListScreen() {
-        val intent = Intent(application, ProductListScreen::class.java)
+        val intent = Intent(application, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 
     override fun showToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    }
+
+    override fun saveTokens(loginResponse: LoginResponse) {
+        getSharedPreferences(USER_PREF, MODE_PRIVATE).edit {
+            putString(ACCESS_TOKEN, loginResponse.accessToken)
+            putString(REFRESH_TOKEN, loginResponse.refreshToken)
+        }
     }
 
 
@@ -58,6 +72,13 @@ class RegisterScreen : AppCompatActivity(), RegisterView {
             lastName = lastName+"",email=email+"",
             credentials = listOf(Credentials(value = password+""))
         )
+        saveEmail(email+"")
         presenter.onRegisterClick(registerRequest)
+    }
+
+    private fun saveEmail(email: String){
+        getSharedPreferences(USER_PREF, MODE_PRIVATE).edit {
+            putString(EMAIL, email)
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.example.nagpecommerce.register.presenter
 
-import com.example.nagpecommerce.login.entity.LoginRequest
 import com.example.nagpecommerce.login.entity.LoginResponse
 import com.example.nagpecommerce.register.entity.RegisterRequest
 import com.example.nagpecommerce.register.repository.RegisterRepository
@@ -18,6 +17,7 @@ class RegisterPresenter(private val view: RegisterView, private val repository: 
         registerCall.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful) {
+                    view.saveTokens(response.body() ?: LoginResponse("", ""))
                     view.openProductListScreen()
                 }else{
                     val errorResponse = Gson().fromJson(response.errorBody()?.string(), JsonObject::class.java)
